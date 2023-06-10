@@ -1,54 +1,60 @@
-import NextLink from "next/link";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon, DribbbleIcon } from "@/components/icons"
+import { subtitle, title } from "@/components/primitives"
+import { siteConfig } from "@/config/site"
+import { Link } from "@nextui-org/link"
+import { button as buttonStyles } from "@nextui-org/theme"
+import NextLink from "next/link"
+import { ThemeSwitch } from "@/components/theme-switch"
+import { Button } from "@nextui-org/button"
 
 export default function Home() {
 	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				<h4 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h4>
+		<section className='fixed inset-0 flex flex-col items-center justify-center h-full gap-4'>
+			<Button
+				className={buttonStyles({
+					variant: "flat",
+					radius: "full",
+					isIconOnly: true,
+					class: "absolute top-[5%] right-[5%]",
+				})}
+			>
+				<ThemeSwitch />
+			</Button>
+			<div className='justify-center inline-block max-w-lg text-center'>
+				<p className='mb-4 text-4xl'>&#128679;</p>
+				<h1 className={title()}>Under&nbsp;</h1>
+				<h1 className={title({ color: "yellow" })}>Construction&nbsp;</h1>
+				<h4 className={subtitle({ class: "mt-4" })}>Check out my socials!</h4>
 			</div>
 
-			<div className="flex gap-3">
+			<div className='flex gap-3'>
 				<Link
 					isExternal
 					as={NextLink}
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
+					className={buttonStyles({
+						color: "secondary",
+						variant: "shadow",
+						radius: "full",
+					})}
+					href={siteConfig.links.dribbble}
 				>
-					Documentation
+					<DribbbleIcon size={18} />
+					Dribbble
 				</Link>
 				<Link
 					isExternal
 					as={NextLink}
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
+					className={buttonStyles({
+						color: "primary",
+						variant: "shadow",
+						radius: "full",
+					})}
 					href={siteConfig.links.github}
 				>
 					<GithubIcon size={20} />
-					GitHub
+					Github
 				</Link>
 			</div>
-
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="bordered">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div>
 		</section>
-	);
+	)
 }
